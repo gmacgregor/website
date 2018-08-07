@@ -8,14 +8,14 @@
     <section v-if="posts">
       <ul>
         <li v-for="post in posts" :key="post.id">
+          <h3>{{post.title}}</h3>
           <!-- <router-link :to="`/post/${post.slug}`" class="link"> -->
             <div class="placeholder">
-              <!-- <img
-                :alt="post.title"
-                :src="`https://media.graphcms.com/resize=w:100,h:100,fit:crop/${post.coverImage.handle}`"
-              /> -->
+              <img 
+                :alt="Photo" 
+                :src="`https://media.graphcms.com/resize=w:400,fit:crop/${post.coverImage.handle}`"
+              />
             </div>
-            <h3>{{post.title}}</h3>
           <!-- </router-link> -->
         </li>
       </ul>
@@ -36,7 +36,10 @@ const allPosts = gql`{
     dateAndTime,
     slug,
     id,
-    text
+    text,
+    coverImage {
+      handle
+    }
   }
 }`;
 
