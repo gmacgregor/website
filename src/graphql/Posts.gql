@@ -1,0 +1,12 @@
+  query Posts {
+    posts(orderBy: dateAndTime_DESC) {
+      title,
+      dateAndTime,
+      slug,
+      id,
+      text,
+      coverImage {
+        handle
+      }
+    }
+  }

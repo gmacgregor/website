@@ -28,22 +28,23 @@
 </template>
 
 <script>
-import gql from "graphql-tag";
+//import gql from "graphql-tag";
+import ALL_POSTS_QUERY from "../graphql/Posts.gql"
 
-const ALL_POSTS_QUERY = gql`
-  query {
-    posts(orderBy: dateAndTime_DESC) {
-      title,
-      dateAndTime,
-      slug,
-      id,
-      text,
-      coverImage {
-        handle
-      }
-    }
-  }
-`;
+// const ALL_POSTS_QUERY = gql`
+//   query Posts {
+//     posts(orderBy: dateAndTime_DESC) {
+//       title,
+//       dateAndTime,
+//       slug,
+//       id,
+//       text,
+//       coverImage {
+//         handle
+//       }
+//     }
+//   }
+// `;
 
 export default {
   name: 'HelloWorld',
@@ -52,8 +53,8 @@ export default {
   },
   data: () => {
     return {
-      loading: 0,
-      posts: null
+      loading: false,
+      posts: []
     }
   },
   apollo: {
