@@ -12,7 +12,7 @@
           <!-- <router-link :to="`/post/${post.slug}`" class="link"> -->
             <div class="placeholder">
               <img 
-                :alt="Photo" 
+                alt="Photo" 
                 :src="`https://media.graphcms.com/resize=w:400,fit:crop/${post.coverImage.handle}`"
               />
             </div>
@@ -30,31 +30,35 @@
 <script>
 import gql from "graphql-tag";
 
-const allPosts = gql`{
-  posts(orderBy: dateAndTime_DESC) {
-    title,
-    dateAndTime,
-    slug,
-    id,
-    text,
-    coverImage {
-      handle
+const ALL_POSTS_QUERY = gql`
+  query {
+    posts(orderBy: dateAndTime_DESC) {
+      title,
+      dateAndTime,
+      slug,
+      id,
+      text,
+      coverImage {
+        handle
+      }
     }
   }
-}`;
+`;
 
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
   },
-  data: () => ({
-    loading: 0,
-    posts: null
-  }),
+  data: () => {
+    return {
+      loading: 0,
+      posts: null
+    }
+  },
   apollo: {
     $loadingKey: 'loading',
-    posts: allPosts,
+    posts: ALL_POSTS_QUERY,
     variables: {
       skip: 0,
       first: 0
