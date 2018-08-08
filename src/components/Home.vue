@@ -1,22 +1,19 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    
-    <div v-if="$apollo.loading">Apollo is loading...</div>
-    <div v-if="$apollo.queries.posts.loading">Posts are Loading...</div>
-
+    <!-- <div v-if="$apollo.loading">Apollo is loading...</div>
+    <div v-if="$apollo.queries.posts.loading">Posts are Loading...</div> -->
     <section v-if="posts">
       <ul>
         <li v-for="post in posts" :key="post.id">
           <h3>{{post.title}}</h3>
-          <!-- <router-link :to="`/post/${post.slug}`" class="link"> -->
+          <router-link :to="`/post/${post.slug}`" class="link">
             <div class="placeholder">
               <img 
                 alt="Photo" 
                 :src="`https://media.graphcms.com/resize=w:400,fit:crop/${post.coverImage.handle}`"
               />
             </div>
-          <!-- </router-link> -->
+          </router-link>
         </li>
       </ul>
       <!-- <button v-if="postCount && postCount > allPosts.length" @click="loadMorePosts">
@@ -28,41 +25,22 @@
 </template>
 
 <script>
-//import gql from "graphql-tag";
 import ALL_POSTS_QUERY from "../graphql/Posts.gql"
 
-// const ALL_POSTS_QUERY = gql`
-//   query Posts {
-//     posts(orderBy: dateAndTime_DESC) {
-//       title,
-//       dateAndTime,
-//       slug,
-//       id,
-//       text,
-//       coverImage {
-//         handle
-//       }
-//     }
-//   }
-// `;
-
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  },
+  name: "Home",
   data: () => {
     return {
-      loading: false,
       posts: []
     }
   },
   apollo: {
-    $loadingKey: 'loading',
-    posts: ALL_POSTS_QUERY,
-    variables: {
-      skip: 0,
-      first: 0
+    posts: {
+      query: ALL_POSTS_QUERY,
+      variables: {
+        skip: 0,
+        first: 0
+      }
     }
   }
 }
