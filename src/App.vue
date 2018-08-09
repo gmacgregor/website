@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Header></Header>
     <main>
       <router-view/>
     </main>
@@ -8,23 +9,25 @@
 </template>
 
 <script>
-// import HelloWorld from "./components/HelloWorld.vue";
+import Header from "./components/Header.vue";
 
 export default {
   name: "app",
-  // components: {
-  //   HelloWorld
-  // }
+  components: {
+    Header
+  },
+  metaInfo: {
+    // if no subcomponents specify a metaInfo.title, this title will be used
+    title: "Hello",
+    // all titles will be injected into this template
+    titleTemplate: '%s | gmac.website'
+  }
 }
 </script>
 
 <style>
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  margin: 0 auto;
+  max-width: 2000px;
 }
 </style>

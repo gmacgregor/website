@@ -1,10 +1,10 @@
 <template>
-  <!-- <router-link :to="/" class="link">GO BACK HOME</router-link> -->
-  <h2 v-if="loading > 0">
-    Loading...
-  </h2>
-  <div v-else>
-    <article>
+  <div>
+    <router-link to="/" class="link">GO BACK HOME</router-link>
+    <h2 v-if="!post">
+      Loading...
+    </h2>
+    <article v-else>
       <h1>{{post.title}}</h1>
       <div class='placeholder'>
         <img
@@ -33,7 +33,7 @@ export default {
     $loadingKey: 'loading',
     post: {
       query: POST_BY_SLUG_QUERY,
-      variables () {
+      variables() {
         return {
           slug: this.$route.params.slug
         }
@@ -42,6 +42,9 @@ export default {
   },
   components: { 
     VueMarkdown
+  },
+  metaInfo: {
+    title: "Hello world"
   }
 }
 </script>
